@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Home!</string>
+    <string name="app_name">Rock, Paper, Scissors, Lizard, Spock</string>
+
+<string-array name="choices"><item>Rock</item>
+<item>Paper</item>
+<item>Scissors</item>
+<item>Lizard</item>
+<item>Spock</item>
+</string-array>
+</resources>
