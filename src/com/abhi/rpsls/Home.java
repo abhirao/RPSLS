@@ -56,7 +56,7 @@ public class Home extends Activity
 						
 					if(Outcome.TIE == res.getOutcome())
 					{
-						selectionView.append( selectionA + " ties with " + selectionB);
+						selectionView.append(". Tie game.");
 					}
 					else if(Outcome.WIN == res.getOutcome())
 					{
