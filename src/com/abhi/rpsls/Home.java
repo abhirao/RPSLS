@@ -2,6 +2,7 @@ package com.abhi.rpsls;
 
 import com.abhi.rpsls.model.Referee;
 import com.abhi.rpsls.model.Result;
+import com.abhi.rpsls.model.Robot;
 import com.abhi.rpsls.model.Result.Outcome;
 
 import android.app.Activity;
@@ -13,47 +14,58 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-/** test comment **/
-
-public class Home extends Activity {
+public class Home extends Activity 
+{
 	private Referee ref = new Referee();
 	private CharSequence selectionA =null;
 	private CharSequence selectionB =null;
+	private Robot robot = null;
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         final ListView view = (ListView) findViewById(R.id.mainList);
-        final String[] values = getApplicationContext().getResources().getStringArray(R.array.choices);
-		view.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values));
-		view.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		view.setOnItemClickListener(new OnItemClickListener() {
+        robot = new Robot();
+		
+		view.setOnItemClickListener(new OnItemClickListener() 
+		{
 
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) 
+			{
 					TextView tv = (TextView) arg1;
 					CharSequence newSelection = tv.getText();
-					String display;
-					if(selectionA==null){
-						selectionA = newSelection;
-						display = selectionA + " vs. ";
-					}else{
-						selectionB = selectionA;
-						selectionA = newSelection;
-						final Result res = ref.determineWinner(selectionA.toString(), selectionB.toString());
-						if(Outcome.TIE == res.getOutcome()){
-							display = selectionA + " ties with " + selectionB;
-						}else if(Outcome.WIN == res.getOutcome()){
-							display = selectionA + " vs. " + selectionB + ". Winner is " + res.getWinner() + ".";
-						}else{
-							display = "Invalid input.";
-						}
-					}
 					TextView selectionView = (TextView) findViewById(R.id.selection);
+					String display;
+					
+					selectionView.setText("");
+					
+					selectionA = newSelection;
+					display = selectionA + " vs. ";
+					
 					selectionView.setText(display);
+					
+					selectionB = robot.Choice();
+					
+					selectionView.append(selectionB.toString());
+			
+					final Result res = ref.determineWinner(selectionA.toString(), selectionB.toString());
+						
+					if(Outcome.TIE == res.getOutcome())
+					{
+						selectionView.append( selectionA + " ties with " + selectionB);
+					}
+					else if(Outcome.WIN == res.getOutcome())
+					{
+						selectionView.append(". Winner is " + res.getWinner() + ".");
+					}
+					else
+					{
+						selectionView.append("Invalid input.");
+					}
 			}
 			
 		});
