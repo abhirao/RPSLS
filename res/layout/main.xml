@@ -7,9 +7,8 @@
 <ListView  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
-    android:id="@+id/mainList"
+    android:id="@id/android:list"
     android:choiceMode="singleChoice"
-    android:entries="@array/choices"
     />
 <TextView android:layout_width="fill_parent" 
     android:layout_height="wrap_content"
