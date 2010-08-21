@@ -64,7 +64,7 @@ public class Home extends ListActivity {
 		}
 	}
 
-	class IconicDisplay extends ArrayAdapter {
+	class IconicDisplay extends ArrayAdapter<String> {
 
 		IconicDisplay() {
 
@@ -81,26 +81,8 @@ public class Home extends ListActivity {
 			choice.setText(items[position]);
 
 			ImageView icon = (ImageView) row.findViewById(R.id.icon);
-
-			if (items[position].compareTo("Rock") == 0) {
-				icon.setImageResource(R.drawable.rock);
-			}
-
-			else if (items[position].compareTo("Lizard") == 0) {
-				icon.setImageResource(R.drawable.lizard);
-			}
-
-			else if (items[position].compareTo("Scissors") == 0) {
-				icon.setImageResource(R.drawable.scissors);
-			}
-
-			else if (items[position].compareTo("Spock") == 0) {
-				icon.setImageResource(R.drawable.spock);
-			}
-
-			else if (items[position].compareTo("Paper") == 0) {
-				icon.setImageResource(R.drawable.paper);
-			}
+			
+			icon.setImageResource(getResources().getIdentifier("com.abhi.rpsls:drawable/"+items[position].toLowerCase(), null, null));
 
 			return row;
 		}
