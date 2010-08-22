@@ -82,6 +82,8 @@ public class Home extends ListActivity {
 
 			ImageView icon = (ImageView) row.findViewById(R.id.icon);
 			
+			//test comment
+			
 			icon.setImageResource(getResources().getIdentifier("com.abhi.rpsls:drawable/"+items[position].toLowerCase(), null, null));
 
 			return row;
